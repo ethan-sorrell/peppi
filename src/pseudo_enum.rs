@@ -22,6 +22,15 @@ macro_rules! pseudo_enum {
 			$( pub const $variant:$name = $name($value); )*
 		}
 
+        impl From<$name> for $type {
+			fn from(val: $name) -> $type {
+				match val {
+                    $( $name($value) => $value, )*
+                    _ => 0,
+				}
+			}
+        }
+
 		impl std::convert::TryFrom<&str> for $name {
 			type Error = super::pseudo_enum::ConversionError;
 			fn try_from(s: &str) -> std::result::Result<Self, Self::Error> {
