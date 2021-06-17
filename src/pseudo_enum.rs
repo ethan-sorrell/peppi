@@ -1,16 +1,16 @@
 #[derive(std::fmt::Debug)]
 pub struct ConversionError {
-	pub r#type: String,
-	pub value: String,
+    pub r#type: String,
+    pub value: String,
 }
 
 impl std::fmt::Display for ConversionError {
-	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-		write!(f, "no such {}: {}", self.r#type, self.value)
-	}
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "no such {}: {}", self.r#type, self.value)
+    }
 }
 
-impl std::error::Error for ConversionError { }
+impl std::error::Error for ConversionError {}
 
 macro_rules! pseudo_enum {
 	($name: ident : $type: ty { $( $value: expr => $variant: ident ),* $(,)? }) => {
